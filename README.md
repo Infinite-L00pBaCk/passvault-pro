@@ -99,6 +99,6 @@ To backup your vault to a new device, utilize the built-in **JSON Export** featu
 ---
 
 <div align="center">
-  <p>Built with ❤️ and ironclad security.</p>
+  <p>Built with ❤️ by Priyam Prakash.</p>
   <p><b>© 2026 PassVault Pro</b></p>
 </div>
