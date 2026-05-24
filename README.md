@@ -1,73 +1,104 @@
-# React + TypeScript + Vite
+<div align="center">
+  <img src="public/favicon.svg" alt="PassVault Pro Logo" width="120" height="120" />
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  # PassVault Pro
+  **The Ultimate Offline-First, Zero-Knowledge Password Manager**
 
-Currently, two official plugins are available:
+  <p>
+    <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" /></a>
+    <a href="https://vitejs.dev/"><img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite" /></a>
+    <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" /></a>
+    <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /></a>
+    <a href="https://framer.com/motion/"><img src="https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=blue" alt="Framer Motion" /></a>
+  </p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+  <p align="center">
+    <strong><a href="#features">Features</a></strong> |
+    <strong><a href="#architecture">Architecture</a></strong> |
+    <strong><a href="#installation">Installation</a></strong> |
+    <strong><a href="#security">Security</a></strong>
+  </p>
+</div>
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ⚡ Overview
 
-## Expanding the ESLint configuration
+**PassVault Pro** is a modern, ultra-secure, completely offline password manager built for users who prioritize privacy without sacrificing aesthetics. Unlike cloud-based solutions (like LastPass or Bitwarden) that are susceptible to server breaches, PassVault Pro runs entirely within your local browser ecosystem utilizing a **Zero-Knowledge Architecture**.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Designed with a stunning, premium **3D Glassmorphism UI**, fluid micro-animations, and military-grade cryptography, it brings a Silicon Valley enterprise feel to local personal security.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🚀 Key Features
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+*   **🔒 Zero-Knowledge Architecture:** Your data never leaves your device. No cloud servers, no databases, no external API calls. Everything is processed and encrypted locally.
+*   **🛡️ Military-Grade Encryption:** Utilizes the native browser **Web Crypto API**. Your Master Password is mathematically hashed using `SHA-256` to create an unbreakable local encryption key.
+*   **🎨 Ultra-Premium UI:** Built with custom Tailwind CSS utilities and Framer Motion to deliver a gorgeous frosted-glass aesthetic with smooth, cinematic transitions.
+*   **📱 Progressive Web App (PWA):** Install PassVault Pro directly to your iOS or Android home screen for a seamless, native-app experience that works entirely offline.
+*   **🎲 Advanced Password Generator:** Instantly generate cryptographically secure random passwords or human-readable passphrases with a built-in entropy strength analyzer.
+*   **📊 Security Health Audit:** Automatically scans your local vault to flag reused, weak, or aging passwords to ensure your digital security hygiene remains flawless.
+*   **🔑 Dual-Authentication:** Secure your vault with an unbreakable Master Password, and unlock it quickly during active sessions using a convenient 4-digit PIN.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Tech Stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+PassVault Pro is built on a modern, lightning-fast frontend stack:
+
+*   **Core:** [React 18](https://reactjs.org/) + [TypeScript](https://www.typescriptlang.org/)
+*   **Build Tool:** [Vite](https://vitejs.dev/) (blazing fast HMR)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/) (with custom glassmorphic tokens) + Vanilla CSS
+*   **Animations:** [Framer Motion](https://www.framer.com/motion/)
+*   **Icons:** [Lucide React](https://lucide.dev/)
+*   **Storage:** LocalStorage / IndexedDB (Fully Offline)
+
+---
+
+## 💻 Installation & Setup
+
+Because PassVault Pro has no backend dependencies, running it locally is incredibly simple.
+
+### Prerequisites
+*   [Node.js](https://nodejs.org/) (v16 or higher)
+*   npm or yarn
+
+### Quick Start
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Infinite-L00pBack/passvault-pro.git
+   cd passvault-pro
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
+
+---
+
+## 🔐 Security Notice
+
+PassVault Pro is designed with the philosophy that **you are the sole owner of your data**. 
+
+Because of our Zero-Knowledge architecture, **we cannot recover a lost Master Password.** If you lose your Master Password, your vault is mathematically impossible to decrypt. Please ensure you memorize your Master Password or store a physical backup in a secure location (such as a fireproof safe).
+
+To backup your vault to a new device, utilize the built-in **JSON Export** feature from your dashboard, transfer the file via USB, and use the **Import** feature on your new device.
+
+---
+
+<div align="center">
+  <p>Built with ❤️ and ironclad security.</p>
+  <p><b>© 2026 PassVault Pro</b></p>
+</div>
