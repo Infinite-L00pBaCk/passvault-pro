@@ -29,7 +29,7 @@
 Designed with a stunning, premium **3D Glassmorphism UI**, fluid micro-animations, and military-grade cryptography, it brings a Silicon Valley enterprise feel to local personal security.
 
 ---
-
+      
 ## 🚀 Key Features
 
 *   **🔒 Zero-Knowledge Architecture:** Your data never leaves your device. No cloud servers, no databases, no external API calls. Everything is processed and encrypted locally.
