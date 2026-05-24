@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - PassVault Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F2F2EE;
+            --text-color: #192837;
+            --accent-purple: #7342E2;
+            --card-bg: #FFFFFF;
+            --border-color: rgba(25, 40, 55, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Modern Nav Header */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 48px;
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(25, 40, 55, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(25, 40, 55, 0.1);
+        }
+
+        /* Hero Header */
+        .page-header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 0 0 16px 0;
+            letter-spacing: -0.03em;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: rgba(25, 40, 55, 0.6);
+            margin: 0;
+        }
+
+        /* Document Body Container */
+        .doc-container {
+            flex: 1;
+            max-width: 840px;
+            margin: 0 auto 80px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 64px;
+            box-shadow: 0 12px 48px rgba(25, 40, 55, 0.06), 0 1px 3px rgba(25, 40, 55, 0.03);
+            border: 1px solid var(--border-color);
+            box-sizing: border-box;
+            width: calc(100% - 40px);
+        }
+
+        /* Typography inside document */
+        .doc-container h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 16px;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .doc-container h2::before {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 24px;
+            background-color: var(--accent-purple);
+            border-radius: 6px;
+            opacity: 0.15;
+        }
+
+        .doc-container p, .doc-container li {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(25, 40, 55, 0.8);
+            margin-bottom: 24px;
+        }
+
+        .doc-container strong {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            font-size: 0.9rem;
+            color: rgba(25, 40, 55, 0.5);
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 20px;
+            }
+            .page-header h1 {
+                font-size: 2.25rem;
+            }
+            .doc-container {
+                padding: 40px 24px;
+                border-radius: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 256 256">
+                <path d="M 64 128 L 64.5 128 L 32 95 L 0 64 L 0 0 L 64 0 L 128 64 L 128 64.5 L 161 32 L 192 0 L 256 0 L 256 64 L 192 128 L 128 128 L 128 192 L 96 223 L 63.5 256 L 0 256 L 0 192 Z M 256 192 L 224 223 L 191.5 256 L 128 256 L 128 192 L 192 128 L 256 128 Z" fill="#192837"/>
+            </svg>
+            <span class="logo-text">PassVault Pro</span>
+        </a>
+        <a href="/" class="back-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            Back to Home
+        </a>
+    </nav>
+
+    <header class="page-header">
+        <h1>Terms of Service</h1>
+        <p>Effective Date: May 2026</p>
+    </header>
+
+    <main class="doc-container">
+        
+        <p>By accessing or using <strong>PassVault Pro</strong>, you agree to be bound by these Terms of Service. If you disagree with any part of the terms, you do not have permission to access the software.</p>
+
+        <h2>1. Description of Service</h2>
+        <p>PassVault Pro is a client-side, browser-based password manager. It is designed to provide local encryption and decryption of your sensitive data without ever communicating with external servers or cloud storage.</p>
+
+        <h2>2. Data Loss & Recovery Disclaimer</h2>
+        <p>Because PassVault Pro stores data purely on your local device using strong encryption, <strong>we are physically incapable of recovering lost data or resetting forgotten master passwords</strong>. You acknowledge and agree that PassVault Pro is not liable for any data loss resulting from device failure, clearing of browser cache, accidental deletion, or forgotten passwords.</p>
+
+        <h2>3. No Warranty</h2>
+        <p>This software is provided "as is", without warranty of any kind, express or implied. In no event shall the authors, contributors, or copyright holders be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the software or the use or other dealings in the software.</p>
+
+        <h2>4. User Responsibilities</h2>
+        <p>You are solely responsible for:</p>
+        <ul>
+            <li>Maintaining the confidentiality of your master password.</li>
+            <li>Regularly backing up your encrypted vault data.</li>
+            <li>Ensuring the physical and digital security of the device on which you use PassVault Pro.</li>
+        </ul>
+
+        <h2>5. Changes to Terms</h2>
+        <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. By continuing to access or use our software after those revisions become effective, you agree to be bound by the revised terms.</p>
+    </main>
+
+    <footer class="footer">
+        © 2026 PassVault Pro. All rights reserved.
+    </footer>
+
+</body>
+</html>

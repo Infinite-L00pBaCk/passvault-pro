@@ -1,0 +1,17 @@
+{
+  "name": "PassVault Pro",
+  "short_name": "PassVault",
+  "description": "Ironclad Password Security",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F2F2EE",
+  "theme_color": "#7342E2",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

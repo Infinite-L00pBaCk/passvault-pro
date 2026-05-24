@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support - PassVault Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #F2F2EE;
+            color: #192837;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+        }
+        /* Background Overlays */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(115,66,226,0.05) 0%, rgba(242,242,238,0) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .header {
+            padding: 20px 40px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #192837;
+            letter-spacing: -0.5px;
+        }
+        .back-btn {
+            text-decoration: none;
+            color: #7342E2;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 99px;
+            border: 1px solid rgba(255,255,255,0.8);
+            transition: all 0.2s;
+        }
+        .back-btn:hover {
+            background: #fff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(115,66,226,0.1);
+        }
+        
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .content h2 {
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-align: center;
+        }
+        .content p.sub {
+            max-width: 600px;
+            color: #192837;
+            opacity: 0.7;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            text-align: center;
+            font-size: 1.05rem;
+        }
+        
+        .form-container {
+            width: 100%;
+            height: 750px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 24px;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.06);
+            border: 1px solid rgba(255,255,255,0.8);
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 60px;
+        }
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, #7342E2, #4CA5FF, transparent);
+        }
+        .form-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+        }
+
+        /* FAQ Section */
+        .faq-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            align-self: flex-start;
+        }
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+        .faq-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.8);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
+        }
+        .faq-card:hover {
+            transform: translateY(-2px);
+            border-color: #7342E2;
+        }
+        .faq-card h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.05rem;
+            color: #192837;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .faq-card h4 i {
+            color: #7342E2;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .faq-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: rgba(25, 40, 55, 0.75);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 600px) {
+            .header { padding: 15px 20px; }
+            .content { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="/" class="logo-area">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;filter:drop-shadow(0 2px 4px rgba(115,66,226,0.2))">
+                <defs>
+                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#7342E2" />
+                        <stop offset="50%" stop-color="#A583ED" />
+                        <stop offset="100%" stop-color="#E9D5FF" />
+                    </linearGradient>
+                </defs>
+                <path d="M32 4 L56 12 V32 C56 46 32 60 32 60 C32 60 8 46 8 32 V12 L32 4 Z" stroke="url(#logoGrad)" stroke-width="5" stroke-linejoin="round" />
+                <circle cx="32" cy="26" r="10" stroke="url(#logoGrad)" stroke-width="4" />
+                <path d="M30 36 V53 H36 V49 H32 V45 H36 V41 H32 V36 Z" fill="url(#logoGrad)" />
+                <path d="M28 26 C28 24 30 22 32 22 C34 22 36 24 36 26" stroke="url(#logoGrad)" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M26 26 C26 22.5 28.5 20 32 20 C35.5 20 38 22.5 38 26" stroke="url(#logoGrad)" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+            <h1>PassVault Pro Help</h1>
+        </a>
+        <a href="/" class="back-btn"><i data-lucide="arrow-left" style="width:16px;height:16px"></i> Return</a>
+    </header>
+
+    <main class="content">
+        <h2>How can we help you today?</h2>
+        <p class="sub">Whether you have a technical question or need assistance with your vault, our support team is ready to help.</p>
+        
+        <div class="form-container">
+            <!-- Google Form Embed -->
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfwO3GqT3w42bBqGvT5002zJzJzJzJzJzJzJzJzJzJzJzJzJw/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </div>
+
+        <h3 class="faq-title"><i data-lucide="help-circle" style="color:#7342E2"></i> Frequently Asked Questions</h3>
+        <div class="faq-grid">
+            <div class="faq-card">
+                <h4><i data-lucide="key-round" style="width:18px"></i> Forgot Master Password?</h4>
+                <p>PassVault Pro is 100% offline with zero-knowledge architecture. This means we cannot reset your password. If you lose your master password, your vault cannot be recovered.</p>
+            </div>
+            <div class="faq-card">
+                <h4><i data-lucide="cloud-off" style="width:18px"></i> Is my data in the cloud?</h4>
+                <p>No. Your vault is encrypted and stored purely on your local device. No credentials ever leave your browser. You can manually export your vault to a JSON file to transfer devices.</p>
+            </div>
+            <div class="faq-card">
+                <h4><i data-lucide="smartphone" style="width:18px"></i> Does it work on Mobile?</h4>
+                <p>Yes! PassVault Pro is a Progressive Web App (PWA). You can click "Install" in your browser menu to save it directly to your home screen like a native app.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

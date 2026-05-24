@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - PassVault Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #F2F2EE;
+            color: #192837;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(115,66,226,0.05) 0%, rgba(242,242,238,0) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .header {
+            padding: 20px 40px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #192837;
+            letter-spacing: -0.5px;
+        }
+        .back-btn {
+            text-decoration: none;
+            color: #7342E2;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 99px;
+            border: 1px solid rgba(255,255,255,0.8);
+            transition: all 0.2s;
+        }
+        .back-btn:hover {
+            background: #fff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(115,66,226,0.1);
+        }
+        
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .content h2 {
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-align: center;
+        }
+        .content p.sub {
+            max-width: 600px;
+            color: #192837;
+            opacity: 0.7;
+            margin-bottom: 60px;
+            line-height: 1.6;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            width: 100%;
+        }
+        .faq-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.6);
+            padding: 32px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+            transition: transform 0.2s;
+        }
+        .faq-card:hover {
+            transform: translateY(-2px);
+            border-color: #7342E2;
+            box-shadow: 0 12px 40px rgba(115,66,226,0.08);
+        }
+        .faq-card h4 {
+            margin: 0 0 16px 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #192837;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .faq-card h4 i {
+            color: #7342E2;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .faq-card p {
+            margin: 0;
+            font-size: 1rem;
+            color: rgba(25, 40, 55, 0.85);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 600px) {
+            .header { padding: 15px 20px; }
+            .content { padding: 40px 20px; }
+            .content h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="/" class="logo-area">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;filter:drop-shadow(0 2px 4px rgba(115,66,226,0.2))">
+                <defs>
+                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#7342E2" />
+                        <stop offset="50%" stop-color="#A583ED" />
+                        <stop offset="100%" stop-color="#E9D5FF" />
+                    </linearGradient>
+                </defs>
+                <path d="M32 4 L56 12 V32 C56 46 32 60 32 60 C32 60 8 46 8 32 V12 L32 4 Z" stroke="url(#logoGrad)" stroke-width="5" stroke-linejoin="round" />
+                <circle cx="32" cy="26" r="10" stroke="url(#logoGrad)" stroke-width="4" />
+                <path d="M30 36 V53 H36 V49 H32 V45 H36 V41 H32 V36 Z" fill="url(#logoGrad)" />
+                <path d="M28 26 C28 24 30 22 32 22 C34 22 36 24 36 26" stroke="url(#logoGrad)" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M26 26 C26 22.5 28.5 20 32 20 C35.5 20 38 22.5 38 26" stroke="url(#logoGrad)" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+            <h1>PassVault Pro FAQ</h1>
+        </a>
+        <a href="/" class="back-btn"><i data-lucide="arrow-left" style="width:16px;height:16px"></i> Return</a>
+    </header>
+
+    <main class="content">
+        <h2>Frequently Asked Questions</h2>
+        <p class="sub">Everything you need to know about PassVault Pro, from encryption mechanics to data management.</p>
+        
+        <div class="faq-grid">
+            <div class="faq-card">
+                <h4><i data-lucide="shield-alert"></i> What happens if I forget my Master Password?</h4>
+                <p>PassVault Pro operates on a <strong>Zero-Knowledge Architecture</strong>. This means we do not store, transmit, or have any way to access your Master Password. If you forget it, there is absolutely no way to recover your vault. Please ensure your Master Password is memorable but highly secure.</p>
+            </div>
+            <div class="faq-card">
+                <h4><i data-lucide="cloud-off"></i> Is my data stored in the cloud?</h4>
+                <p>No. By design, PassVault Pro is a 100% offline, local-first application. Your encrypted passwords remain exclusively on the device where you created them. No servers, no databases, and no cloud leaks.</p>
+            </div>
+            <div class="faq-card">
+                <h4><i data-lucide="file-json"></i> How do I backup or transfer my vault to another device?</h4>
+                <p>You can securely export your vault from the dashboard. This generates an encrypted JSON or CSV file that you can safely transfer to your new device (e.g., via a USB drive). On the new device, simply use the "Import" feature inside the app to restore your vault.</p>
+            </div>
+            <div class="faq-card">
+                <h4><i data-lucide="fingerprint"></i> Does the 4-digit PIN replace the Master Password?</h4>
+                <p>The PIN is a convenience feature for quick unlocking when you are actively using the device. However, the PIN is cryptographically tied to your Master Password. If you clear your browser data or log out completely, you will need your full Master Password to log back in.</p>
+            </div>
+            <div class="faq-card">
+                <h4><i data-lucide="smartphone"></i> How do I install it on my phone?</h4>
+                <p>PassVault Pro is built as a Progressive Web App (PWA). Simply open the application in Safari (iOS) or Chrome (Android), tap the "Share" or "Menu" icon, and select <strong>"Add to Home Screen"</strong>. It will function identically to a native app, complete with offline capabilities.</p>
+            </div>
+            <div class="faq-card">
+                <h4><i data-lucide="activity"></i> How does the Security Health Audit work?</h4>
+                <p>The audit continuously runs completely locally within your browser. It calculates entropy for password strength, checks for exact string matches to flag reused passwords, and warns you if passwords are becoming old, ensuring your vault maintains a perfect security score.</p>
+            </div>
+            <div class="faq-card">
+                <h4><i data-lucide="lock"></i> What encryption standard is used?</h4>
+                <p>We utilize the native browser Web Crypto API. Your master password is hashed using SHA-256 before being utilized as an encryption key. Because it relies on native browser cryptography, it is incredibly fast and adheres to modern military-grade security standards.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

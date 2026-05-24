@@ -21,6 +21,11 @@ var pinBuf      = '';
 var loginMethod = 'pw'; // 'pw' or 'pin'
 
 // ═══════════════════════════════════════
+var emoMap={'🌐':'globe','📧':'mail','💳':'credit-card','🎮':'gamepad-2','📱':'smartphone','🛒':'shopping-cart','💼':'briefcase','☁️':'cloud','🔧':'wrench','🎵':'music','🏥':'heart-pulse','🔑':'key'};
+function getIconHTML(val){var id=emoMap[val]||val||'file';return '<i data-lucide="'+id+'" class="icon-md"></i>';}
+function iconSm(id){return '<i data-lucide="'+id+'" class="icon-sm"></i>';}
+function safeLucide(){setTimeout(function(){if(window.lucide)lucide.createIcons();},0);}
+// ═══════════════════════════════════════
 // HASHING — simple hash stored as hex
 // ═══════════════════════════════════════
 async function sha256(str) {
@@ -275,12 +280,13 @@ function renderDash(){
 }
 function renderFtabs(){
   var cats=['all'].concat(Array.from(new Set(entries.map(function(e){return e.icon;}))));
-  var nm={'all':'All','🌐':'Web','📧':'Email','💳':'Bank','🎮':'Gaming','📱':'Social','🛒':'Shop','💼':'Work','☁️':'Cloud','🔧':'Dev','🎵':'Music','🏥':'Health','🔑':'Other'};
+  var nm={'all':'All','globe':'Web','mail':'Email','credit-card':'Bank','gamepad-2':'Gaming','smartphone':'Social','shopping-cart':'Shop','briefcase':'Work','cloud':'Cloud','wrench':'Dev','music':'Music','heart-pulse':'Health','key':'Other', '🌐':'Web','📧':'Email','💳':'Bank','🎮':'Gaming','📱':'Social','🛒':'Shop','💼':'Work','☁️':'Cloud','🔧':'Dev','🎵':'Music','🏥':'Health','🔑':'Other'};
   document.getElementById('ftabs').innerHTML=cats.map(function(c){
     var cnt=c==='all'?entries.length:entries.filter(function(e){return e.icon===c;}).length;
     return '<button class="ftab'+(cat===c?' on':'')+ '" onclick="setF(\''+c+'\')">'+
-      (c==='all'?'All ('+cnt+')':c+' '+(nm[c]||'')+'('+cnt+')')+'</button>';
+      (c==='all'?'All ('+cnt+')':getIconHTML(c)+' '+(nm[c]||nm[emoMap[c]]||'')+' ('+cnt+')')+'</button>';
   }).join('');
+  safeLucide();
 }
 function setF(c){cat=c;renderFtabs();renderVault();}
 function renderAlerts(){
@@ -289,10 +295,11 @@ function renderAlerts(){
   var re=entries.filter(function(e){return rs.has(e.password);});
   var ol=entries.filter(function(e){return e.createdTs&&old(e.createdTs);});
   var h='';
-  if(wk.length)h+='<div class="abar warn" onclick="openHealth()">⚠️ '+wk.length+' weak password'+(wk.length>1?'s need':'needs')+' attention</div>';
-  if(re.length)h+='<div class="abar warn" onclick="openHealth()">♻️ '+re.length+' password'+(re.length>1?'s are':'is')+' reused</div>';
-  if(ol.length)h+='<div class="abar info" onclick="openHealth()">🕐 '+ol.length+' password'+(ol.length>1?'s haven\'t':'hasn\'t')+' been updated in 90+ days</div>';
+  if(wk.length)h+='<div class="abar warn" onclick="openHealth()">'+iconSm('alert-triangle')+' '+wk.length+' weak password'+(wk.length>1?'s need':'needs')+' attention</div>';
+  if(re.length)h+='<div class="abar warn" onclick="openHealth()">'+iconSm('refresh-cw')+' '+re.length+' password'+(re.length>1?'s are':'is')+' reused</div>';
+  if(ol.length)h+='<div class="abar info" onclick="openHealth()">'+iconSm('clock')+' '+ol.length+' password'+(ol.length>1?'s haven\'t':'hasn\'t')+' been updated in 90+ days</div>';
   document.getElementById('halerts').innerHTML=h;
+  safeLucide();
 }
 function renderVault(){
   var rs=reusedSet();
@@ -306,31 +313,38 @@ function renderVault(){
     return strength(a.password).lv-strength(b.password).lv;
   });
   if(!list.length){
-    document.getElementById('vlist').innerHTML='<div class="vempty"><div class="bi">🗝️</div><p>'+(entries.length===0?'Your vault is empty. Generate and save your first password!':'No results found.')+'</p></div>';
+    document.getElementById('vlist').innerHTML='<div class="vempty" style="padding: 80px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; border: 1px solid rgba(255,255,255,0.4); box-shadow: inset 0 0 40px rgba(115,66,226,0.05);">' +
+'<div class="bi" style="background: rgba(115,66,226,0.1); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 24px rgba(115,66,226,0.2); margin-bottom: 0; opacity: 1">' +
+'<i data-lucide="' + (entries.length===0 ? 'sparkles' : 'search-x') + '" style="width: 40px; height: 40px; color: var(--accent);"></i></div>' +
+'<h3 style="font-size: 20px; font-weight: 800; color: var(--text); margin-top: 8px;">' + (entries.length===0 ? 'Your Vault is Empty' : 'No Results Found') + '</h3>' +
+'<p style="color: var(--muted2); font-size: 14px; max-width: 320px; text-align: center; line-height: 1.6;">' + (entries.length===0 ? 'Generate an ironclad password above, or securely import an existing vault to get started.' : 'Try adjusting your search or filters to find what you are looking for.') + '</p>' +
+'</div>';
+    safeLucide();
     return;
   }
   document.getElementById('vlist').innerHTML=list.map(function(e){
     var s=strength(e.password),ru=rs.has(e.password),ol=e.createdTs&&old(e.createdTs),bad=s.lv<=2||ru;
     return '<div class="ec'+(bad?' bad':ol?' warn':'')+'">'+
-      '<div class="eic">'+e.icon+'</div>'+
+      '<div class="eic">'+getIconHTML(e.icon)+'</div>'+
       '<div class="ei">'+
         '<div class="etop"><div class="ep">'+esc(e.platform)+'</div>'+
         '<span class="badge '+s.lbl.toLowerCase()+'">'+s.lbl+'</span>'+
-        (ru?'<span class="badge reused">♻ REUSED</span>':'')+
-        (ol?'<span class="badge old">🕐 AGING</span>':'')+
+        (ru?'<span class="badge reused">'+iconSm('refresh-cw')+' REUSED</span>':'')+
+        (ol?'<span class="badge old">'+iconSm('clock')+' AGING</span>':'')+
         '</div>'+
-        (e.username?'<div class="eu">👤 '+esc(e.username)+'</div>':'')+
-        '<div class="emeta"><span class="etag">📅 '+(e.createdTs?age(e.createdTs):(e.created||''))+'</span></div>'+
+        (e.username?'<div class="eu">'+iconSm('user')+' '+esc(e.username)+'</div>':'')+
+        '<div class="emeta"><span class="etag">'+iconSm('calendar')+' '+(e.createdTs?age(e.createdTs):(e.created||''))+'</span></div>'+
         '<div class="epass" id="pw-'+e.id+'">••••••••••••</div>'+
-        (e.notes?'<div class="enote" title="'+esc(e.notes)+'">📝 '+esc(e.notes)+'</div>':'')+
+        (e.notes?'<div class="enote" title="'+esc(e.notes)+'">'+iconSm('file-text')+' '+esc(e.notes)+'</div>':'')+
       '</div>'+
       '<div class="ea">'+
-        '<button class="ibtn" onclick="togPw('+e.id+')">👁</button>'+
-        '<button class="ibtn" onclick="cpPw('+e.id+')">📋</button>'+
-        '<button class="ibtn" onclick="openEdit('+e.id+')">✏️</button>'+
-        '<button class="ibtn del" onclick="askDel('+e.id+')">🗑</button>'+
+        '<button class="ibtn" onclick="togPw('+e.id+')">'+iconSm('eye')+'</button>'+
+        '<button class="ibtn" onclick="cpPw('+e.id+')">'+iconSm('copy')+'</button>'+
+        '<button class="ibtn" onclick="openEdit('+e.id+')">'+iconSm('pen-line')+'</button>'+
+        '<button class="ibtn del" onclick="askDel('+e.id+')">'+iconSm('trash')+'</button>'+
       '</div></div>';
   }).join('');
+  safeLucide();
 }
 
 // ═══════════════════════════════════════
@@ -371,22 +385,23 @@ function openHealth(){
   var score=100;
   if(entries.length>0)score=Math.max(0,Math.round(100-(wk.length/entries.length)*50-(re.length/entries.length)*30-(ol.length/entries.length)*20));
   var sc=score>=80?'var(--accent)':score>=50?'var(--accent4)':'var(--accent3)';
-  var sl=score>=80?'Excellent 🏆':score>=60?'Good 👍':score>=40?'Fair ⚠️':'Needs Work 🚨';
-  function sec(title,items,rgb,icon){
-    if(!items.length)return'<div style="padding:12px 16px;border-radius:10px;border:1px solid var(--border);margin-bottom:10px;color:var(--accent);font-size:13px">✅ '+title+': All good!</div>';
+  var sl=score>=80?'Excellent':score>=60?'Good':score>=40?'Fair':'Needs Work';
+  function sec(title,items,rgb,iconId){
+    if(!items.length)return'<div style="padding:12px 16px;border-radius:10px;border:1px solid var(--border);margin-bottom:10px;color:var(--accent);font-size:13px;display:flex;align-items:center;gap:6px">'+iconSm('check-circle')+' '+title+': All good!</div>';
     return'<div style="padding:14px 16px;border-radius:10px;border:1px solid rgba('+rgb+',.3);background:rgba('+rgb+',.07);margin-bottom:10px">'+
-      '<div style="font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:10px;color:rgba('+rgb+',1)">'+icon+' '+title.toUpperCase()+' ('+items.length+')</div>'+
-      items.slice(0,6).map(function(e){return'<div style="font-size:12px;color:var(--muted2);padding:4px 0;border-bottom:1px solid var(--border)">'+e.icon+' '+esc(e.platform)+(e.username?' — '+esc(e.username):'')+'</div>';}).join('')+
+      '<div style="font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:10px;color:rgba('+rgb+',1);display:flex;align-items:center;gap:6px">'+iconSm(iconId)+' '+title.toUpperCase()+' ('+items.length+')</div>'+
+      items.slice(0,6).map(function(e){return'<div style="font-size:12px;color:var(--muted2);padding:4px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px">'+getIconHTML(e.icon)+' <span style="font-weight:600;color:var(--text)">'+esc(e.platform)+'</span>'+(e.username?' — '+esc(e.username):'')+'</div>';}).join('')+
       (items.length>6?'<div style="font-size:11px;color:var(--muted);margin-top:6px">+'+(items.length-6)+' more…</div>':'')+
       '</div>';
   }
   document.getElementById('hRpt').innerHTML=
     '<div style="text-align:center;margin-bottom:20px">'+
-    '<div style="font-family:\'Space Mono\',monospace;font-size:56px;font-weight:700;color:'+sc+';line-height:1">'+score+'</div>'+
+    '<div style="font-family:\'Inter\',sans-serif;font-size:56px;font-weight:800;color:'+sc+';line-height:1">'+score+'</div>'+
     '<div style="color:'+sc+';font-size:14px;font-weight:700;margin-top:4px">'+sl+'</div>'+
     '<div style="color:var(--muted2);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-top:4px">Security Score</div>'+
-    '</div>'+sec('Weak Passwords',wk,'255,107,107','⚠️')+sec('Reused Passwords',re,'255,107,107','♻️')+sec('Aging (90+ Days)',ol,'255,179,71','🕐');
+    '</div>'+sec('Weak Passwords',wk,'255,74,74','alert-triangle')+sec('Reused Passwords',re,'255,74,74','refresh-cw')+sec('Aging (90+ Days)',ol,'255,153,0','clock');
   openM('mHealth');
+  safeLucide();
 }
 
 // ═══════════════════════════════════════

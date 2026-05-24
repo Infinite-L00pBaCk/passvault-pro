@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+<title>PassVault Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<script src="https://unpkg.com/lucide@latest"></script>
+<body>
+<!-- Holographic Background Video -->
+<div class="bg-layer">
+  <video class="bg-video" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260518_003132_8b7edcb6-c64d-4a52-a9ca-879942e122ad.mp4" autoplay loop muted playsinline></video>
+  <div class="bg-overlay"></div>
+</div>
+
+<!-- ═══ LOGIN SCREEN ═══ -->
+<div class="scr" id="scrLogin">
+  <div class="lcard">
+    <div class="l-logo" style="width:64px;height:64px;margin:0 auto 15px;background:transparent;border:none;box-shadow:none;filter:drop-shadow(0 4px 12px rgba(115,66,226,0.3))"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+  <defs>
+    <linearGradient id="logoGradL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7342E2" />
+      <stop offset="50%" stop-color="#A583ED" />
+      <stop offset="100%" stop-color="#E9D5FF" />
+    </linearGradient>
+  </defs>
+  <path d="M32 4 L56 12 V32 C56 46 32 60 32 60 C32 60 8 46 8 32 V12 L32 4 Z" stroke="url(#logoGradL)" stroke-width="5" stroke-linejoin="round" />
+  <circle cx="32" cy="26" r="10" stroke="url(#logoGradL)" stroke-width="4" />
+  <path d="M30 36 V53 H36 V49 H32 V45 H36 V41 H32 V36 Z" fill="url(#logoGradL)" />
+  <path d="M28 26 C28 24 30 22 32 22 C34 22 36 24 36 26" stroke="url(#logoGradL)" stroke-width="1.5" stroke-linecap="round" />
+  <path d="M26 26 C26 22.5 28.5 20 32 20 C35.5 20 38 22.5 38 26" stroke="url(#logoGradL)" stroke-width="1.5" stroke-linecap="round" />
+</svg></div>
+    <div class="l-title">Pass<em>Vault</em><span class="l-badge">PRO</span></div>
+    <div class="l-sub">Secure Password Manager</div>
+
+    <!-- Sign In / Sign Up tabs -->
+    <div class="mtabs">
+      <button class="mtab on" id="tab-in" onclick="swMode('in')">Sign In</button>
+      <button class="mtab" id="tab-up" onclick="swMode('up')">Create Account</button>
+    </div>
+
+    <div class="lmsg err" id="lErr"></div>
+    <div class="lmsg ok"  id="lOk"></div>
+
+    <!-- SIGN IN -->
+    <div id="formIn">
+      <div class="lf"><label>Username</label><input type="text" id="siUser" placeholder="Enter your username" autocomplete="username"/></div>
+
+      <!-- Method toggle inside sign-in -->
+      <div class="ldiv"><span>choose method</span></div>
+
+      <!-- Password method -->
+      <div id="si-pw-section">
+        <div class="lf"><label>Password</label><input type="password" id="siPw" placeholder="Enter your password" autocomplete="current-password"/></div>
+        <button class="lbtn" onclick="doLogin()"><i data-lucide="unlock" class="icon-sm" style="margin-right:6px"></i> Sign In</button>
+        <div class="l-switch" style="margin-top:12px"><button onclick="swLoginMethod()">Use PIN instead →</button></div>
+      </div>
+
+      <!-- PIN method -->
+      <div id="si-pin-section" style="display:none">
+        <div class="pin-row">
+          <div class="pdot2" id="pd0"></div><div class="pdot2" id="pd1"></div>
+          <div class="pdot2" id="pd2"></div><div class="pdot2" id="pd3"></div>
+        </div>
+        <div class="pin-hint">Enter your 4-digit PIN</div>
+        <div class="pin-grid">
+          <button class="pkey" onclick="pinKey('1')">1</button>
+          <button class="pkey" onclick="pinKey('2')">2</button>
+          <button class="pkey" onclick="pinKey('3')">3</button>
+          <button class="pkey" onclick="pinKey('4')">4</button>
+          <button class="pkey" onclick="pinKey('5')">5</button>
+          <button class="pkey" onclick="pinKey('6')">6</button>
+          <button class="pkey" onclick="pinKey('7')">7</button>
+          <button class="pkey" onclick="pinKey('8')">8</button>
+          <button class="pkey" onclick="pinKey('9')">9</button>
+          <button class="pkey del" onclick="pinKey('del')">⌫</button>
+          <button class="pkey" onclick="pinKey('0')">0</button>
+          <button class="pkey" style="font-size:12px;color:var(--accent)" onclick="pinKey('ok')">OK</button>
+        </div>
+        <div class="l-switch" style="margin-top:4px"><button onclick="swLoginMethod()">← Use password instead</button></div>
+      </div>
+    </div>
+
+    <!-- CREATE ACCOUNT -->
+    <div id="formUp" style="display:none">
+      <div class="lf"><label>Username</label><input type="text" id="suUser" placeholder="Choose a username" autocomplete="username"/></div>
+      <div class="ldiv"><span>set your login method</span></div>
+      <div class="lf"><label>Password <span style="color:var(--muted);font-size:10px">(leave blank to use PIN only)</span></label><input type="password" id="suPw" placeholder="Min 4 characters" autocomplete="new-password"/></div>
+      <div class="lf">
+        <label>PIN <span style="color:var(--muted);font-size:10px">(4 digits, optional)</span></label>
+        <input type="text" id="suPin" placeholder="e.g. 1234" maxlength="4" pattern="[0-9]*" inputmode="numeric"/>
+      </div>
+      <button class="lbtn" onclick="doCreate()"><i data-lucide="rocket" class="icon-sm" style="margin-right:6px"></i> Create Account</button>
+      <div class="l-switch">Already have an account? <button onclick="swMode('in')">Sign in</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ APP ═══ -->
+<div id="app">
+<div class="container">
+<header>
+  <div class="h-left">
+    <div class="h-icon" style="width:36px;height:36px;margin-right:12px;background:transparent;border:none;box-shadow:none;filter:drop-shadow(0 2px 8px rgba(115,66,226,0.3))"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+  <defs>
+    <linearGradient id="logoGradH" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7342E2" />
+      <stop offset="50%" stop-color="#A583ED" />
+      <stop offset="100%" stop-color="#E9D5FF" />
+    </linearGradient>
+  </defs>
+  <path d="M32 4 L56 12 V32 C56 46 32 60 32 60 C32 60 8 46 8 32 V12 L32 4 Z" stroke="url(#logoGradH)" stroke-width="5" stroke-linejoin="round" />
+  <circle cx="32" cy="26" r="10" stroke="url(#logoGradH)" stroke-width="4" />
+  <path d="M30 36 V53 H36 V49 H32 V45 H36 V41 H32 V36 Z" fill="url(#logoGradH)" />
+  <path d="M28 26 C28 24 30 22 32 22 C34 22 36 24 36 26" stroke="url(#logoGradH)" stroke-width="1.5" stroke-linecap="round" />
+  <path d="M26 26 C26 22.5 28.5 20 32 20 C35.5 20 38 22.5 38 26" stroke="url(#logoGradH)" stroke-width="1.5" stroke-linecap="round" />
+</svg></div>
+    <div class="h-text">
+      <h1>Pass<em>Vault</em><span class="pro-badge">PRO</span></h1>
+      <div class="h-sub">Secure Password Manager</div>
+    </div>
+  </div>
+  <div class="h-right">
+    <div class="uchip">
+      <div class="uph" id="uph">?</div>
+      <div class="uinfo">
+        <div class="uname" id="uname">—</div>
+        <div class="urole">Local vault</div>
+      </div>
+    </div>
+    <button class="hbtn" onclick="openExport()"><i data-lucide="download" class="icon-sm"></i></button>
+    <button class="hbtn" onclick="openImport()"><i data-lucide="upload" class="icon-sm"></i></button>
+    <button class="hbtn out" onclick="doSignOut()"><i data-lucide="log-out" class="icon-sm" style="margin-right:6px"></i> Sign Out</button>
+  </div>
+</header>
+
+<div class="dash">
+  <div class="sc g"><div class="sc-icon"><i data-lucide="key"></i></div><div class="sc-num" id="stTotal">0</div><div class="sc-lbl">Total Passwords</div></div>
+  <div class="sc b"><div class="sc-icon"><i data-lucide="shield"></i></div><div class="sc-num" id="stStrong">0</div><div class="sc-lbl">Strong Passwords</div></div>
+  <div class="sc r"><div class="sc-icon"><i data-lucide="alert-triangle"></i></div><div class="sc-num" id="stWeak">0</div><div class="sc-lbl">Weak / At Risk</div></div>
+  <div class="sc o"><div class="sc-icon"><i data-lucide="refresh-cw"></i></div><div class="sc-num" id="stReused">0</div><div class="sc-lbl">Reused Passwords</div></div>
+</div>
+
+<div class="gcard">
+  <div class="sec-lbl"><i data-lucide="zap" class="icon-sm" style="margin-right:8px;color:var(--accent)"></i> Password Generator</div>
+  <div class="tabs">
+    <button class="tab on" id="t-random" onclick="swTab('random')"><i data-lucide="dices" class="icon-sm" style="margin-right:6px"></i> Random</button>
+    <button class="tab" id="t-phrase" onclick="swTab('phrase')"><i data-lucide="message-square" class="icon-sm" style="margin-right:6px"></i> Passphrase</button>
+    <button class="tab" id="t-manual" onclick="swTab('manual')"><i data-lucide="pen-line" class="icon-sm" style="margin-right:6px"></i> Manual</button>
+  </div>
+
+  <div id="p-random">
+    <div class="fr fr3">
+      <div class="f"><label>Platform</label><input type="text" id="rPlat" placeholder="Gmail, GitHub…"/></div>
+      <div class="f"><label>Username</label><input type="text" id="rUser" placeholder="you@email.com"/></div>
+      <div class="f"><label>Category</label><select id="rCat"><option value="globe">Website</option><option value="mail">Email</option><option value="credit-card">Banking</option><option value="gamepad-2">Gaming</option><option value="smartphone">Social</option><option value="shopping-cart">Shopping</option><option value="briefcase">Work</option><option value="cloud">Cloud</option><option value="wrench">Dev</option><option value="music">Music</option><option value="heart-pulse">Health</option><option value="key">Other</option></select></div>
+    </div>
+    <div class="f" style="margin-bottom:16px"><label>Notes / 2FA Codes</label><textarea id="rNotes" placeholder="Backup codes, hints…"></textarea></div>
+    <div class="lr"><label>Length</label><input type="range" id="lenSlider" min="8" max="64" value="20"/><div class="lv" id="lenVal">20</div></div>
+    <div class="pills">
+      <label class="pill on" id="pl-upper"><input type="checkbox" id="inclUpper" checked/><div class="pdot"></div>A–Z</label>
+      <label class="pill on" id="pl-lower"><input type="checkbox" id="inclLower" checked/><div class="pdot"></div>a–z</label>
+      <label class="pill on" id="pl-num"><input type="checkbox" id="inclNum" checked/><div class="pdot"></div>0–9</label>
+      <label class="pill on" id="pl-sym"><input type="checkbox" id="inclSym" checked/><div class="pdot"></div>!@#$</label>
+      <label class="pill" id="pl-amb"><input type="checkbox" id="exclAmb"/><div class="pdot"></div>No Ambiguous</label>
+    </div>
+  </div>
+
+  <div id="p-phrase" style="display:none">
+    <div class="fr fr3">
+      <div class="f"><label>Platform</label><input type="text" id="phPlat" placeholder="Gmail…"/></div>
+      <div class="f"><label>Username</label><input type="text" id="phUser" placeholder="you@email.com"/></div>
+      <div class="f"><label>Category</label><select id="phCat"><option value="globe">Website</option><option value="mail">Email</option><option value="credit-card">Banking</option><option value="gamepad-2">Gaming</option><option value="smartphone">Social</option><option value="shopping-cart">Shopping</option><option value="briefcase">Work</option><option value="cloud">Cloud</option><option value="wrench">Dev</option><option value="music">Music</option><option value="heart-pulse">Health</option><option value="key">Other</option></select></div>
+    </div>
+    <div class="phopts">
+      <span class="phlbl">Words</span>
+      <select class="phsel" id="wCount"><option>3</option><option selected>4</option><option>5</option><option>6</option></select>
+      <span class="phlbl">Separator</span>
+      <select class="phsel" id="wSep"><option value="-">Hyphen -</option><option value=".">Dot .</option><option value="_">Underscore _</option><option value=" ">Space</option><option value="">None</option></select>
+      <span class="phlbl">Case</span>
+      <select class="phsel" id="wCase"><option value="lower">lowercase</option><option value="title">Title Case</option><option value="upper">UPPER</option></select>
+      <label class="pill on" id="pl-ppn"><input type="checkbox" id="ppNum" checked/><div class="pdot"></div>+Numbers</label>
+    </div>
+    <div class="f" style="margin-bottom:16px"><label>Notes</label><textarea id="phNotes" placeholder="Backup codes…"></textarea></div>
+  </div>
+
+  <div id="p-manual" style="display:none">
+    <div class="fr fr3">
+      <div class="f"><label>Platform</label><input type="text" id="mnPlat" placeholder="Gmail…"/></div>
+      <div class="f"><label>Username</label><input type="text" id="mnUser" placeholder="you@email.com"/></div>
+      <div class="f"><label>Category</label><select id="mnCat"><option value="globe">Website</option><option value="mail">Email</option><option value="credit-card">Banking</option><option value="gamepad-2">Gaming</option><option value="smartphone">Social</option><option value="shopping-cart">Shopping</option><option value="briefcase">Work</option><option value="cloud">Cloud</option><option value="wrench">Dev</option><option value="music">Music</option><option value="heart-pulse">Health</option><option value="key">Other</option></select></div>
+    </div>
+    <div class="f" style="margin-bottom:14px"><label>Your Password</label><input type="text" id="mnPw" placeholder="Type or paste…"/></div>
+    <div class="f" style="margin-bottom:16px"><label>Notes</label><textarea id="mnNotes" placeholder="Backup codes…"></textarea></div>
+  </div>
+
+  <div class="pdisp">
+    <span class="ptxt empty" id="pTxt">Click "Generate" to create a password…</span>
+    <button class="ibtn" id="cpyBtn"><i data-lucide="copy" class="icon-sm"></i></button>
+    <button class="ibtn" id="refBtn"><i data-lucide="refresh-cw" class="icon-sm"></i></button>
+  </div>
+  <div class="str-row" id="strRow" style="display:none">
+    <span class="str-lbl">Strength</span>
+    <div class="str-bars"><div class="sbar" id="sb1"></div><div class="sbar" id="sb2"></div><div class="sbar" id="sb3"></div><div class="sbar" id="sb4"></div></div>
+    <span class="str-val" id="strVal"></span>
+  </div>
+  <div class="brow">
+    <button class="btn btn-g" id="genBtn"><i data-lucide="zap" class="icon-sm" style="margin-right:6px"></i> Generate</button>
+    <button class="btn btn-s" id="savBtn"><i data-lucide="save" class="icon-sm" style="margin-right:6px"></i> Save to Vault</button>
+    <button class="btn btn-p" onclick="openHealth()"><i data-lucide="shield-alert" class="icon-sm" style="margin-right:6px"></i> Health Audit</button>
+  </div>
+</div>
+
+<div class="vh">
+  <div class="vt"><i data-lucide="archive" class="icon-md" style="margin-right:8px"></i> My Vault</div>
+  <div class="vcnt" id="vcnt">0 passwords</div>
+</div>
+<div class="halerts" id="halerts"></div>
+<div class="vc">
+  <div class="sw"><span class="si"><i data-lucide="search" class="icon-sm"></i></span><input type="text" id="srch" placeholder="Search platforms, usernames…"/></div>
+  <select class="ss" id="srt"><option value="date-desc">Newest First</option><option value="date-asc">Oldest First</option><option value="name-asc">Name A→Z</option><option value="name-desc">Name Z→A</option><option value="str-desc">Strongest First</option><option value="str-asc">Weakest First</option></select>
+</div>
+<div class="ftabs" id="ftabs"></div>
+<div id="vlist"></div>
+</div></div>
+
+<!-- MODALS -->
+<div class="mo" id="mDel"><div class="md msm"><button class="mc" onclick="closeM('mDel')">✕</button><h3 style="display:flex;align-items:center;gap:8px"><i data-lucide="trash-2" style="color:var(--accent3)"></i> Delete Password?</h3><p class="msub">Permanently removes this entry.</p><div class="mbtns"><button class="btn btn-s" onclick="closeM('mDel')">Cancel</button><button class="bdng" id="btnDel"><i data-lucide="trash" class="icon-sm" style="margin-right:6px"></i> Delete</button></div></div></div>
+<div class="mo" id="mEdit">
+  <div class="md mmm">
+    <button class="mc" onclick="closeM('mEdit')">✕</button>
+    <h3 style="display:flex;align-items:center;gap:8px"><i data-lucide="pen-line" style="color:var(--accent)"></i> Edit Entry</h3><p class="msub">Update this saved password.</p>
+    <input type="hidden" id="eId"/>
+    <div class="fr"><div class="f"><label>Platform</label><input type="text" id="ePlat"/></div><div class="f"><label>Username</label><input type="text" id="eUser"/></div></div>
+    <div class="fr"><div class="f"><label>Password</label><input type="text" id="ePw"/></div><div class="f"><label>Category</label><select id="eCat"><option value="globe">Website</option><option value="mail">Email</option><option value="credit-card">Banking</option><option value="gamepad-2">Gaming</option><option value="smartphone">Social</option><option value="shopping-cart">Shopping</option><option value="briefcase">Work</option><option value="cloud">Cloud</option><option value="wrench">Dev</option><option value="music">Music</option><option value="heart-pulse">Health</option><option value="key">Other</option></select></div></div>
+    <div class="f"><label>Notes</label><textarea id="eNotes" style="min-height:75px"></textarea></div>
+    <div class="mbtns"><button class="btn btn-s" onclick="closeM('mEdit')">Cancel</button><button class="btn btn-g" onclick="saveEdit()"><i data-lucide="save" class="icon-sm" style="margin-right:6px"></i> Save</button></div>
+  </div>
+</div>
+<div class="mo" id="mHealth"><div class="md mmm"><button class="mc" onclick="closeM('mHealth')">✕</button><h3 style="display:flex;align-items:center;gap:8px"><i data-lucide="shield-alert" style="color:var(--accent)"></i> Health Report</h3><p class="msub">Security analysis of your vault.</p><div id="hRpt"></div><div class="mbtns" style="margin-top:20px"><button class="btn btn-g bfull" onclick="closeM('mHealth')">Got It</button></div></div></div>
+<div class="mo" id="mExp"><div class="md mmm"><button class="mc" onclick="closeM('mExp')">✕</button><h3 style="display:flex;align-items:center;gap:8px"><i data-lucide="download" style="color:var(--accent)"></i> Export Vault</h3><p class="msub">Download your passwords safely.</p><div class="eopts"><div class="eopt" onclick="expJSON()"><div class="ei2"><i data-lucide="file-json" style="width:36px;height:36px;color:var(--accent)"></i></div><div class="el">JSON Format</div><div class="es">Full data, re-importable</div></div><div class="eopt" onclick="expCSV()"><div class="ei2"><i data-lucide="file-spreadsheet" style="width:36px;height:36px;color:var(--accent2)"></i></div><div class="el">CSV Format</div><div class="es">Open in spreadsheets</div></div></div></div></div>
+<div class="mo" id="mImp"><div class="md mmm"><button class="mc" onclick="closeM('mImp')">✕</button><h3 style="display:flex;align-items:center;gap:8px"><i data-lucide="upload" style="color:var(--accent)"></i> Import Passwords</h3><p class="msub">Import a PassVault JSON backup.</p><div class="iz" id="iZone"><div class="ii"><i data-lucide="upload-cloud" style="width:42px;height:42px;color:var(--accent)"></i></div><p>Drag & drop your JSON file here</p><label for="fInput" class="izbtn">Choose File</label></div><input type="file" id="fInput" accept=".json" style="display:none"/></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>

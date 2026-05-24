@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Features - PassVault Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #F2F2EE;
+            color: #192837;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header {
+            padding: 20px 40px;
+            background-color: #CFC8C5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #192837;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .header a {
+            color: #7342E2;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .header a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            flex: 1;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+        .title p {
+            color: #192837;
+            opacity: 0.7;
+            font-size: 1.1rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+            backdrop-filter: blur(12px);
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #192837;
+        }
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .card li {
+            margin-bottom: 16px;
+            line-height: 1.6;
+            color: #192837;
+            opacity: 0.85;
+            font-size: 0.95rem;
+        }
+        .card li strong {
+            color: #7342E2;
+            font-weight: 700;
+        }
+        .card li:last-child {
+            margin-bottom: 0;
+        }
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>
+            <i data-lucide="shield"></i> Technical Specifications
+        </h1>
+        <a href="/"><i data-lucide="arrow-left" style="width:18px;height:18px"></i> Back to Home</a>
+    </header>
+
+    <div class="container">
+        <div class="title">
+            <h2>Full Feature Documentation</h2>
+            <p>Deep dive into the architecture and capabilities of PassVault Pro.</p>
+        </div>
+
+        <div class="grid">
+            <!-- Robust Authentication -->
+            <div class="card">
+                <h3><i data-lucide="shield-check" style="color:#7342E2"></i> Robust Authentication</h3>
+                <ul>
+                    <li><strong>Local Accounts:</strong> Create personalized accounts with a unique username completely offline.</li>
+                    <li><strong>Dual Login Methods:</strong> Support for traditional master passwords or a quick-access 4-digit PIN.</li>
+                    <li><strong>Secure Hashing:</strong> All credentials are processed using SHA-256 hashing via the Web Crypto API before local storage.</li>
+                    <li><strong>Visual Personalization:</strong> Each user profile is assigned a unique color chip based on their account for easy switching.</li>
+                </ul>
+            </div>
+
+            <!-- Advanced Password Generation -->
+            <div class="card">
+                <h3><i data-lucide="dices" style="color:#7342E2"></i> Advanced Generation</h3>
+                <ul>
+                    <li><strong>Random Mode:</strong> Fully customizable with toggles for case, numbers, symbols, and an "Exclude Ambiguous" filter.</li>
+                    <li><strong>Passphrase Mode:</strong> Generates human-readable but cryptographically secure phrases based on dictionary wordlists.</li>
+                    <li><strong>Manual Mode:</strong> Input and audit the strength of pre-existing passwords before saving them to the vault.</li>
+                    <li><strong>Strength Indicator:</strong> Real-time visual feedback from "WEAK" to "STRONG" dynamically calculated.</li>
+                </ul>
+            </div>
+
+            <!-- Security Health Audit -->
+            <div class="card">
+                <h3><i data-lucide="activity" style="color:#7342E2"></i> Security Health Audit</h3>
+                <ul>
+                    <li><strong>Real-Time Analysis:</strong> Dedicated dashboard monitoring total, strong, weak, and reused passwords.</li>
+                    <li><strong>Risk Detection:</strong> Automatically flags weak passwords, reused credentials, and "aging" passwords.</li>
+                    <li><strong>Security Score:</strong> Provides a numerical score (0-100) and a qualitative grade based on overall vault health.</li>
+                </ul>
+            </div>
+
+            <!-- Vault Management -->
+            <div class="card">
+                <h3><i data-lucide="archive" style="color:#7342E2"></i> Vault Management</h3>
+                <ul>
+                    <li><strong>Categorization:</strong> Organize entries using icons for Web, Banking, Gaming, Social, Shopping, Work, and more.</li>
+                    <li><strong>Smart Search & Sort:</strong> Instantly filter entries by platform or username, and sort by date, name, or strength.</li>
+                    <li><strong>Metadata Tracking:</strong> Automatically logs creation dates and allows for custom notes or 2FA backup codes.</li>
+                    <li><strong>JSON/CSV Export:</strong> Securely backup your entire encrypted vault to a portable file offline.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
